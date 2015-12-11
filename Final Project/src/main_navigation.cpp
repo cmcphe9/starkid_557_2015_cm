@@ -74,9 +74,11 @@ int    g_with_interpolation = 1;
 
 int    g_swap_trackball_navigation = 0;
 
+//at present, g_delta represents a change in location.  Eventually, it should
+//    represent a change in velocity.  Something like .4/15 units per second per press.
 float g_delta = 0.4;
 
-
+//then a velocity variable, which is initialized to 0 will be needed
 
 
 
@@ -110,15 +112,21 @@ void keyboard_callback(GLFWwindow* window, int key, int scancode, int action, in
     if( (key == 87 && action == GLFW_REPEAT) || (key == 87 && action == GLFW_PRESS) ) // key w
     {
         //cout <<  "key w pressed" << endl;
+//these lines should be modified to merely change the value of a velocity variable, which is later used to change 
+//    position for the spacecraft
         g_tranform_spaceship=  g_tranform_spaceship* glm::translate(glm::vec3( -g_delta,0.0, 0.0f));
         spaceship->setMatrix(g_tranform_spaceship);
+//move should always be true
         move = true;
     }
     else if((key == 83 && action == GLFW_REPEAT) || (key == 83 && action == GLFW_PRESS)) // key s
     {
         //cout <<  "key s pressed" << endl;
+//these lines should be modified to merely change the value of a velocity variable, which is later used to change 
+//    position for the spacecraft
         g_tranform_spaceship=  g_tranform_spaceship* glm::translate(glm::vec3( g_delta,0.0, 0.0f));
         spaceship->setMatrix(g_tranform_spaceship);
+//move should always be true
         move = true;
     }
     
