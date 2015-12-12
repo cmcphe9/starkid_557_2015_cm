@@ -295,7 +295,17 @@ int main(int argc, const char * argv[])
     
     
     g_tranform_spaceship_result = glm::translate(glm::vec3(0.0, 0.0f, 5.0f));
-    spaceship_result->setMatrix(g_tranform_spaceship_result);
+
+    if(g_swap_trackball_navigation == 0)
+    {
+        spaceship_result->setMatrix(g_tranform_spaceship_result);
+    }
+    else
+    {
+//this should make the spaceship rotate with the trackball
+        spaceship_result->setMatrix(GetCurrentCameraMatrix());
+    }
+
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //// Main render loop
@@ -306,7 +316,7 @@ int main(int argc, const char * argv[])
     
     // This sets the camera to a new location
     // the first parameter is the eye position, the second the center location, and the third the up vector. 
-    SetViewAsLookAt(glm::vec3(12.0f, 65.0f, 12.5f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+//    SetViewAsLookAt(glm::vec3(12.0f, 65.0f, 12.5f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
     
     
     // Enable depth test
@@ -373,7 +383,7 @@ int main(int argc, const char * argv[])
         }
         else
         {
-            // Set the trackball locatiom
+            // Set the trackball location
             SetTrackballLocation(GetCurrentCameraMatrix(), GetCurrentCameraTranslation());
         }
         
