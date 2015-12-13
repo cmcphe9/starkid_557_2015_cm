@@ -151,21 +151,27 @@ void keyboard_callback(GLFWwindow* window, int key, int scancode, int action, in
     
     if(move)
     {
-        glm::vec3 s(g_tranform_spaceship[3][0],g_tranform_spaceship[3][1],g_tranform_spaceship[3][2]);
-        glm::vec3 e(g_tranform_spaceship[3][0],g_tranform_spaceship[3][1],g_tranform_spaceship[3][2]-20);
-        vector<glm::vec3> res;
-        
-        // perform the ray intersectiont test.
+//        glm::vec3 s(g_tranform_spaceship[3][0],g_tranform_spaceship[3][1],g_tranform_spaceship[3][2]);
+//        glm::vec3 e(g_tranform_spaceship[3][0],g_tranform_spaceship[3][1],g_tranform_spaceship[3][2]-20);
+//        vector<glm::vec3> res;
+//        
+//        // perform the ray intersectiont test.
 //        RayIntersectionTest::intersect(s, e, *loadedModel1, res);
-        
-        // pick the first result if one is available
-        if (res.size() > 0) {
-            glm::vec3 position = res[0];
-            
-            g_tranform_spaceship_result = g_tranform_spaceship;
-            g_tranform_spaceship_result[3][0] = position[0];
-            g_tranform_spaceship_result[3][1] = position[1];
-            g_tranform_spaceship_result[3][2] = position[2];
+//        
+//        // pick the first result if one is available
+//        if (res.size() > 0) {
+//            glm::vec3 position = res[0];
+//            
+//            g_tranform_spaceship_result = g_tranform_spaceship;
+//            g_tranform_spaceship_result[3][0] = position[0];
+//            g_tranform_spaceship_result[3][1] = position[1];
+//            g_tranform_spaceship_result[3][2] = position[2];
+            //no need for ray intersection in the z direction specifically, just move result as with the
+            //  original.  Honestly, it is unlikely that result even matters in this case, but whatever it
+            //  takes to avoid stick-and-jump is worth it.
+            g_transform_spaceship_result[3][0]=g_transform_spaceship[3][0];
+            g_transform_spaceship_result[3][1]=g_transform_spaceship[3][1];
+            g_transform_spaceship_result[3][2]=g_transform_spaceship[3][2];
             spaceship_result->setMatrix(g_tranform_spaceship_result);
         }
     
