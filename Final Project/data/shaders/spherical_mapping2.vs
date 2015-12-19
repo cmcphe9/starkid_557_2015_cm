@@ -157,7 +157,7 @@ vec2 spherical_mapping(vec3 cameraPosition, vec3 surfacePostion, vec3 normal)
     // calculate the reflectance vector
 //    vec3 r = normalize(reflect( eye_to_surface, normal ));
     
-    vec3 r = surfacePosition;
+    vec3 r = normalize(surfacePosition);
     // calculate the position of the texel
 //    float m = 2. * sqrt(
 //            pow( r.x, 2. ) +
@@ -165,7 +165,7 @@ vec2 spherical_mapping(vec3 cameraPosition, vec3 surfacePostion, vec3 normal)
 //            pow( r.z + 1., 2. )
 //                        );
 //    sphericalUV = r.xy / m + .5;
-    sphericalUV = vec2(atan(r.y,r.x)/3.1415926+1.0)*0.5,asin((r.z)/3.1415926+0.5));
+    sphericalUV = vec2((atan(r.y,r.x)/3.1415926+1.0)*0.5,1.0-acos(r.z)/3.1415926);
 
     return sphericalUV;
 }

@@ -6,7 +6,7 @@
 cmake_minimum_required(VERSION 2.6)
 
 # Main project name is ARMaker
-project(HCI557_HW4_p2)
+project(HCI557_Final_spaceship)
 
 
 set(CFILE_PATH  "${CMAKE_SOURCE_DIR}/../SDK/cmake/")
@@ -31,8 +31,8 @@ include_directories(${OPENGL_INCLUDE_DIR})
 include_directories(${CMAKE_SOURCE_DIR}/../gl_common/)
 
 # Add all files to the configuration
-file(GLOB main_p2
-	main_p2.cpp
+file(GLOB main_navigation
+	main_navigation.cpp
     ../gl_common/HCI557Common.cpp
     ../gl_common/HCI557Common.h
 	../gl_common/controls.cpp
@@ -56,6 +56,12 @@ file(GLOB main_p2
     ../gl_common/camera.h
 	../gl_common/camera.cpp
     ../gl_common/GLObjects3D.h
+	../gl_common/Sphere3D.h
+	../gl_common/Sphere3D.cpp
+	../gl_common/GLObjectObj.h
+	../gl_common/GLObjectObj.cpp
+	../gl_common/GLObjectObjInt.cpp
+	../gl_common/GLObjectObjInt.h
 )
 
 set(HCI557_RES
@@ -70,7 +76,7 @@ source_group(Resources FILES ${HCI557_RES})
 
 
 # Create an executable
-add_executable(HCI557_HW4_p2 ${main_p2})
+add_executable(HCI557_Final_spaceship ${main_navigation})
 
 
 # Add link directories
@@ -86,4 +92,4 @@ ENDIF(WIN32)
 
 
 # Add libraries
-target_link_libraries(HCI557_HW4_p2 ${GLEW_LIBRARY} ${GLFW3_LIBRARY} ${OPENGL_LIBRARIES} ${OPENGL_LIBRARIES} )
+target_link_libraries(HCI557_Final_spaceship ${GLEW_LIBRARY} ${GLFW3_LIBRARY} ${OPENGL_LIBRARIES} ${OPENGL_LIBRARIES} )

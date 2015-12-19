@@ -82,7 +82,10 @@ void Trackball::cursorCallback( GLFWwindow *window, double x, double y ){
     _currPos  = toScreenCoord( x, y );
     
     /* Calculate the angle in radians, and clamp it between 0 and 90 degrees */
-    _current_angle    = acos( std::min(1.0f, glm::dot(_prevPos, _currPos) ));
+    if(1.0f<glm::dot(_prevPos, _currPos))
+        _current_angle    = acos( 1.0f ));
+    else
+        _current_angle    = acos( glm::dot(_prevPos, _currPos) ));
     
     /* Cross product to get the rotation axis, but it's still in camera coordinate */
     _camAxis  = glm::cross( _prevPos, _currPos );

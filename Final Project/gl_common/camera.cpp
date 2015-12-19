@@ -92,7 +92,10 @@ void CameraManipulator::camera_MouseCursor_Callack( GLFWwindow *window, double x
     _currentPos  = toWindowCoord( x, y );
     
     // Calculate the angle in radians, and clamp it between 0 and 90 degrees
-    _currentAngle    = acos( std::min(1.0f, glm::dot(_startPos, _currentPos) ));
+    if(1.0f<glm::dot(_startPos, _currentPos))
+        _currentAngle    = acos( 1.0f ));
+    else
+        _currentAngle    = acos( glm::dot(_startPos, _currentPos) ));
     
     // Cross product to get the rotation axis, but it's still in camera coordinate
     _cameraRotationAxis  = glm::cross( _startPos, _currentPos );
